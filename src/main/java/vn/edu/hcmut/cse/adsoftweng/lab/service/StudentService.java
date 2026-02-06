@@ -20,4 +20,8 @@ public class StudentService {
     public Student getById(String id) {
         return studentRepository.findById(id).orElse(null);
     }
+
+    public List<Student> searchByName(String keyword) {
+        return studentRepository.findByNameContaining(keyword);
+    }
 }
