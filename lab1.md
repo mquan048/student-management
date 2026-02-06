@@ -79,8 +79,6 @@ System.out.println(name.length());
 Nếu name = NULL:
 - Gây NullPointerException
 - Chương trình bị crash
-
-## Các vấn đề có thể gặp
 - Lỗi runtime
 - Giao diện hiển thị "null"
 
