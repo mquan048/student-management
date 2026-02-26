@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chi Tiết Sinh Viên</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #4f46e5;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #1a1a2e;
+            margin-bottom: 24px;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            width: 120px;
+            font-weight: 600;
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .info-value {
+            flex: 1;
+            font-size: 14px;
+            color: #111827;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .btn-edit {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .btn-edit:hover {
+            background-color: #fde68a;
+        }
+
+        .btn-delete {
+            background-color: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-delete:hover {
+            background-color: #fecaca;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="/students" class="back-link">← Quay về danh sách</a>
+        <h1>📄 Chi Tiết Sinh Viên</h1>
+
+        <div class="info-card">
+            <div class="info-row">
+                <span class="info-label">ID</span>
+                <span class="info-value" th:text="${student.id}">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Họ và Tên</span>
+                <span class="info-value" th:text="${student.name}">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Email</span>
+                <span class="info-value" th:text="${student.email}">—</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Tuổi</span>
+                <span class="info-value" th:text="${student.age}">—</span>
+            </div>
+        </div>
+
+        <div class="actions">
+            <a th:href="@{/students/{id}/edit(id=${student.id})}" class="btn btn-edit">✏️ Chỉnh Sửa</a>
+
+            <form th:action="@{/students/{id}/delete(id=${student.id})}" method="POST"
+                onsubmit="return confirm('Bạn có chắc chắn muốn xóa sinh viên này?');">
+                <button type="submit" class="btn btn-delete">🗑️ Xóa</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
