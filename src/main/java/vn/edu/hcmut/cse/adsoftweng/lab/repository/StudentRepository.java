@@ -6,5 +6,5 @@ import vn.edu.hcmut.cse.adsoftweng.lab.entity.Student;
 import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, String> {
-    List<Student> findByNameContaining(String keyword);
+    List<Student> findByNameContainingIgnoreCase(String keyword);
 }

@@ -22,7 +22,7 @@ public class StudentService {
     }
 
     public List<Student> searchByName(String keyword) {
-        return studentRepository.findByNameContaining(keyword);
+        return studentRepository.findByNameContainingIgnoreCase(keyword);
     }
 
     public Student save(Student student) {
