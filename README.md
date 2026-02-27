@@ -1,16 +1,38 @@
 # Student management
-## Thành viên nhóm
+# Thành viên nhóm
 - Đỗ Minh Quân - 2212781
 - Đặng Trần Công Chính - 2210387
 
-## Hướng dẫn chạy
+# Web url
+[https://student-management-mlae.onrender.com/students](https://student-management-mlae.onrender.com/students)
 
-## Trả lời câu hỏi
+# Hướng dẫn chạy
+## Step 1: Tạo file .env
+Tạo file .env ở root project theo mẫu sau:
+```dotenv
+SPRING_DATASOURCE_URL=jdbc:postgresql://your-db-url
+SPRING_DATASOURCE_USERNAME=your-db-username
+SPRING_DATASOURCE_PASSWORD=your-db-password
+```
+## Step 2: Build docker image
+Build image:
+```bash
+docker build -t student-mamagement .
+```
+
+## Step 3: Run container
+Chạy dự án:
+```bash
+docker run --env-file .env -p 8080:8080 student-mamagement
+```
+
+
+# Trả lời câu hỏi
 ## Lab 1
 
-## Thêm dữ liệu lớn (ít nhất 10 sinh viên)
+### Thêm dữ liệu lớn (ít nhất 10 sinh viên)
 
-## Câu lệnh SQL
+### Câu lệnh SQL
 
 ```sql
 INSERT INTO Student(id, name, age, email) VALUES
@@ -25,12 +47,12 @@ INSERT INTO Student(id, name, age, email) VALUES
 (9, 'Do Van I', 19, 'i@gmail.com'),
 (10, 'Phan Thi K', 22, 'k@gmail.com');
 ```
-## Kết quả 
+### Kết quả 
 Thêm dữ liệu thành công
 
-# Ràng buộc Primary Key
+### Ràng buộc Primary Key
 
-## Thử nghiệm
+### Thử nghiệm
 Cố tình insert một id đã tồn tại:
 
 ```sql
@@ -38,13 +60,13 @@ INSERT INTO Student(id, name, age, email)
 VALUES (1, 'Duplicate Student', 20, 'dup@gmail.com');
 ```
 
-## Thông báo lỗi
+### Thông báo lỗi
 
 ```
 UNIQUE constraint failed: Student.id
 ```
 
-## Giải thích
+### Giải thích
 
 Primary Key có hai đặc tính quan trọng:
 
@@ -62,7 +84,7 @@ Nếu cho phép trùng id:
 - UPDATE/DELETE có thể tác động nhầm dữ liệu
 - Mất tính toàn vẹn dữ liệu
 
-## Toàn vẹn dữ liệu (Constraints – NULL name)
+### Toàn vẹn dữ liệu (Constraints – NULL name)
 
 ### Thử nghiệm
 
@@ -77,7 +99,7 @@ VALUES (11, NULL, 20, 'null@gmail.com');
 - name = NULL
 
 
-## Ảnh hưởng khi đọc dữ liệu bằng Java
+### Ảnh hưởng khi đọc dữ liệu bằng Java
 
 Ví dụ:
 
@@ -95,7 +117,7 @@ Nếu name = NULL:
 
 ---
 
-## Giải pháp đề xuất
+### Giải pháp đề xuất
 - Thêm NOT NULL trong Database
 
 ```sql
@@ -135,3 +157,14 @@ Kết quả trả về của api
 Kết quả trả về
 
 ![Kết quả trả về](images/image.png)
+
+## Lab 4
+### Trang danh sách
+![](images/lab4/list-view.png)
+
+### Trang chi tiết
+![](images/lab4/detail-view.png)
+
+### Trang thêm mới / chỉnh sủa
+![](images/lab4/new-edit.png)
+
